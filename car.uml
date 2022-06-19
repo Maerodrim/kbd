@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car</OriginalElement>
+  <nodes>
+    <node x="0.0" y="234.0">3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.model</node>
+    <node x="271.75" y="22.0">3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car_dealer</node>
+    <node x="43.75" y="0.0">3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.manager</node>
+    <node x="189.0" y="310.0">3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car_dealer_managers</node>
+    <node x="20.0" y="512.0">3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car_dealer_managers" target="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car_dealer">
+      <point x="51.75" y="-38.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car" target="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.model">
+      <point x="0.0" y="-81.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car_dealer_managers" target="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.manager">
+      <point x="-51.75" y="-38.0" />
+      <point x="240.75" y="209.0" />
+      <point x="166.0" y="209.0" />
+      <point x="40.75" y="92.0" />
+    </edge>
+    <edge source="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.model" target="3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.manager">
+      <point x="0.0" y="-114.0" />
+      <point x="-40.75" y="92.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8688760806916427" x="228.5" y="337.0" />
+  <SelectedNodes>
+    <node>3280dabe-0ca9-4f64-a19b-216140cdb7c1.TABLE:postgres.public.car</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
