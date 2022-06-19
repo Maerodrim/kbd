@@ -8,6 +8,7 @@ import com.ssau.db.repo.CarDealerRepository;
 import com.ssau.db.repo.CarRepository;
 import com.ssau.db.repo.ManagerRepository;
 import com.ssau.db.repo.ModelRepository;
+import com.ssau.db.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ public class GenerateController {
     private final ManagerRepository managerRepository;
     private final CarRepository carRepository;
     private final CarDealerRepository carDealerRepository;
+    int managerSize = 10;
+    int modelSize = 10;
+    int carSize = 100;
 
     @Autowired
     public GenerateController(ModelRepository modelRepository,
@@ -37,34 +41,36 @@ public class GenerateController {
 
     @PostMapping("generate")
     public void generate() {
-        for (int i = 0; i < 10; i++) {
+
+        for (int i = 0; i < managerSize; i++) {
             createDealer();
             createManager();
         }
+
         List<Manager> managerList = managerRepository.getAllBy();
-        for (int i = 0; i < 10; i++) {
-            createModel(managerList.get(0).getID());
+        for (int i = 0; i < modelSize; i++) {
+            createModel(managerList.get(Utils.rnd(managerSize)).getID());
         }
 
         List<Model> modelList = modelRepository.getAllBy();
-        for (int i = 0; i < 10; i++) {
-            createCar(modelList.get(0).getID());
+        for (int i = 0; i < carSize; i++) {
+            createCar(modelList.get(Utils.rnd(modelSize)).getID());
         }
     }
 
     public void createDealer() {
         CarDealer carDealer = new CarDealer();
-        carDealer.setName(getRandomString());
-        carDealer.setAddress(getRandomString());
-        carDealer.setPhone(getRandomString());
+        carDealer.setName(Utils.randomIdentifier());
+        carDealer.setAddress(Utils.getRandomString());
+        carDealer.setPhone(Utils.rnd(1000000000).toString());
         carDealerRepository.save(carDealer);
     }
 
     public void createCar(Integer model_id) {
         Car car = new Car();
-        car.setCost(getRandomInteger());
-        car.setColor(getRandomString());
-        car.setNumberD(getRandomInteger());
+        car.setCost(Utils.rnd(1000000000));
+        car.setColor(Utils.getRandomString());
+        car.setNumberD(Utils.getRandomInteger());
         Model model = modelRepository.getByID(model_id);
         car.setModel(model);
         carRepository.save(car);
@@ -73,12 +79,12 @@ public class GenerateController {
     public void createModel(Integer managerId) {
         Model model = new Model();
 
-        model.setFullName(getRandomString());
-        model.setAge(getRandomInteger());
-        model.setBrand(getRandomString());
-        model.setBody(getRandomString());
-        model.setContractNumber(getRandomInteger());
-        model.setPhone(getRandomString());
+        model.setFullName(Utils.randomIdentifier());
+        model.setAge(Utils.rnd(2022));
+        model.setBrand(Utils.getBrand());
+        model.setBody(Utils.getBody());
+        model.setContractNumber(Utils.rnd(10000));
+        model.setPhone(Utils.rnd(1000000000).toString());
         Manager manager = managerRepository.getByID(managerId);
         model.setManager(manager);
         modelRepository.save(model);
@@ -86,20 +92,12 @@ public class GenerateController {
 
     public void createManager() {
         Manager manager = new Manager();
-        manager.setFullName(getRandomString());
-        manager.setCostOfServices(getRandomInteger());
-        manager.setExperience(getRandomInteger());
-        manager.setPhone(getRandomString());
-        manager.setEmail(getRandomString());
+        manager.setFullName(Utils.getFullName());
+        manager.setCostOfServices(Utils.rnd(1000000000));
+        manager.setExperience(Utils.rnd(30));
+        manager.setPhone(Utils.rnd(1000000000).toString());
+        manager.setEmail(Utils.getRandomString());
         managerRepository.save(manager);
-    }
-
-    String getRandomString() {
-        return "test";
-    }
-
-    Integer getRandomInteger() {
-        return 0;
     }
 }
 
